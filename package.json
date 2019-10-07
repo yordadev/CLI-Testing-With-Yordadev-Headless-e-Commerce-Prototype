@@ -1,0 +1,50 @@
+{
+  "name": "yordadev-cli",
+  "description": "CLI to access ecomninja services.",
+  "version": "0.0.1",
+  "author": "yordadev @yordadev",
+  "bin": {
+    "yordadev-cli": "./bin/run"
+  },
+  "bugs": "https://github.com/yordadev/yordadev-cli/issues",
+  "dependencies": {
+    "@oclif/command": "^1.5.19",
+    "@oclif/config": "^1.13.3",
+    "@oclif/plugin-help": "^2.2.1",
+    "cli-ux": "^5.3.2",
+    "dotenv": "^8.1.0",
+    "globby": "^10.0.1",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json",
+    "/src"
+  ],
+  "homepage": "https://github.com/yordadev/yordadev-cli",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "commands": "./src/commands",
+    "bin": "yordadev-cli",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "yordadev/yordadev-cli",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint .",
+    "prepack": "oclif-dev manifest && oclif-dev readme",
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
+    "version": "oclif-dev readme && git add README.md"
+  }
+}
