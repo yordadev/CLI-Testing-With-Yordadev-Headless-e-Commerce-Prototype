@@ -7,7 +7,9 @@ class RegisterCommand extends Command {
   async run() {
     const {flags} = this.parse(RegisterCommand)
     
-    
+    const name = await cli.prompt('What name would you like to register your account under', { required: true })
+    const password = await cli.prompt('Choose a password', { type: 'hide', required: true })
+    const c_password = await cli.prompt('Confirm your password', { type: 'hide', required: true })
 
     var default_headers, site_root = 'http://yorda.devs';
 
@@ -22,10 +24,10 @@ class RegisterCommand extends Command {
         headers: default_headers,
         method: 'POST',
         json: {
-            name: flags.name,
+            name: name,
             email: flags.email,
-            password: flags.password,
-            c_password: flags.c_password
+            password: password,
+            c_password: c_password
         }
     }, function(err, res, body) {
         if (!err && res.statusCode == 200) {
@@ -64,12 +66,7 @@ Extra documentation goes here
 `
 
 RegisterCommand.flags = {
-  
-  name: flags.string({char: 'n', description: 'Name'}),
   email: flags.string({char: 'e', description: 'Email Address'}),
-  password: flags.string({char: 'p', description: 'Password'}),
-  c_password: flags.string({char: 'c', description: 'Confirm your password'})
-
 }
 
 module.exports = RegisterCommand

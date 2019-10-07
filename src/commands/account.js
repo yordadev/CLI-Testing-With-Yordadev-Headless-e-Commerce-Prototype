@@ -12,10 +12,6 @@ class AccountCommand extends Command {
         if (err) throw err;
         let env = JSON.parse(data);
 
-      
-
-
-
         var default_headers, site_root = 'http://yorda.devs';
 
         default_headers = {
@@ -34,7 +30,7 @@ class AccountCommand extends Command {
             if (!err && res.statusCode == 200) {
                 body = JSON.parse(body)
                 
-                console.log()
+
                 cli.action.stop("Account Retrieved")
 
                 let tree = cli.tree()
@@ -55,7 +51,7 @@ class AccountCommand extends Command {
 
 
                 tree.insert('shops')            
-                console.log(body.payload.shops) 
+                
                 if(Object.keys(body.payload.shops).length > 0){
                     for(let x = 0; x < Object.keys(body.payload.shops).length; x++){
                         let subtree = cli.tree()
@@ -74,11 +70,6 @@ class AccountCommand extends Command {
                     tree.nodes.shops.insert("0 of 1 shops available", subtree)
                  
                 }
-
-                
-
-                
-                
 
                 tree.display()
  

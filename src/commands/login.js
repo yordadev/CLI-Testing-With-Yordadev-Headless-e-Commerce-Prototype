@@ -5,8 +5,10 @@ const {cli} = require('cli-ux')
 
 class LoginCommand extends Command {
   async run() {
+    cli.action.start('Attempting to Login')
     const {flags} = this.parse(LoginCommand)
 
+    const input = await cli.prompt('Enter your password', { type: 'hide', required: true })
 
     var default_headers, site_root = 'http://yorda.devs';
 
@@ -22,7 +24,7 @@ class LoginCommand extends Command {
         method: 'POST',
         json: {
             email: flags.email,
-            password: flags.password
+            password: input
         }
     }, function(err, res, body) {
         if (!err && res.statusCode == 200) {
@@ -37,14 +39,15 @@ class LoginCommand extends Command {
         
         fs.writeFile('config.json', data, (err) => {
             if (err) throw err;
-            console.log('\nStatus: ' + body['status'] + "\n");
-            console.log('Logged in. See yordadev-cli --help');
+            cli.action.stop(body['status'])
+            console.log('\n\nLogged in. See yordadev-cli --help\n');
         });
         
         
         } else {
-          console.log('\nStatus: ' + body['status'] + "\n")
-          console.log(body['payload'])
+          cli.action.stop(body['payload'].message)
+          console.log('\n\nLogin Failed. See documentation for help\n');
+          const broswer =  cli.url('Documentation', 'https://docs.yordadev.com \n')
         }
     })
 
@@ -57,8 +60,7 @@ Extra documentation goes here
 `
 
 LoginCommand.flags = {
-  email: flags.string({char: 'e', description: 'Email Address'}),
-  password: flags.string({char: 'p', description: 'Password'}),
+  email: flags.string({char: 'e', description: 'Email Address'})
 }
 
 module.exports = LoginCommand

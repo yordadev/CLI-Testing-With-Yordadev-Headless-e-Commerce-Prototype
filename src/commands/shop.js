@@ -5,16 +5,23 @@ const fs = require('fs');
 
 class ShopCommand extends Command {
   async run() {
-    cli.action.start('Attempting to Create Your Shop')
+    
     const {flags} = this.parse(ShopCommand)
 
 
 
     switch(flags.method){
         case('create'):
-            
+        cli.action.start('Attempting to Create Your Shop')        
+        const name = await cli.prompt('What would you like to call this shop', { required: true })
+        const description = await cli.prompt('Give this shop a description', { required: true })
+        const challenge = await cli.prompt('Enter a challenge code to verify your DNS with', { required: true })
+        const dns = await cli.prompt('What is your shops domain for incoming requests to our system', { required: true })
+
             fs.readFile('config.json', (err, data) => {
                 if (err) throw err;
+
+                
                 let env = JSON.parse(data);
 
                 var default_headers, site_root = 'http://yorda.devs';
@@ -34,10 +41,10 @@ class ShopCommand extends Command {
                     headers: default_headers,
                     method: 'POST',
                     json: {
-                        name: flags.name,
-                        description: flags.description,
-                        challenge: flags.challenge,
-                        dns: flags.dns
+                        name: name,
+                        description: description,
+                        challenge: challenge,
+                        dns: dns
                     }
                 }, function(err, res, body) {
                    
@@ -70,18 +77,13 @@ class ShopCommand extends Command {
                             subtree.insert("challenged: " + '<not checked yet>')
                             tree.nodes.oversight.insert('security', subtree)
             
-                            tree.insert('shops')
-
-            
-                 
-                            
-     
+       
                                                         
                             subtree = cli.tree()
                             subtree.insert("shop_id: " + data['shops'].shop_id)
                             subtree.insert("name: " + data['shops'].name)
                             subtree.insert("description: " + data['shops'].description)
-                            tree.insert("shops", subtree)
+                            tree.insert("shop", subtree)
                             
                             
                             subtree = cli.tree()
