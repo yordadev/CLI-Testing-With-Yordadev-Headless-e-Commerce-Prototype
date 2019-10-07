@@ -43,7 +43,7 @@ class RegisterCommand extends Command {
               
               fs.writeFile('config.json', data, (err) => {
                   if (err) throw err;
-                  console.log('\nStatus: ' + body['status'] + "\n")
+                  console.log('\nStatus: ' + body['status'] + "\n");
                   console.log('Logged in. See yordadev-cli --help');
               });
             }

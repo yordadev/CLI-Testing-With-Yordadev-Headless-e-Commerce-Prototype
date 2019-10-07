@@ -14,9 +14,16 @@ CLI to access ecomninja services.
 ```sh
 cd <path> && git clone https://github.com/yordadev/yordadev-cli.git .
 npm install
-yordadev-cli --help```
-
+yordadev-cli --help
+```
 If you recieve symlink error, on `npm install` add additional flag `--no-bin-links`.
+
+### Setting up your own workflow alias
+```sh
+alias <desiredAlias>='yordadev-cli'
+<desiredAlias> --help
+
+
 
 ## Configuring
 Login and Register generate a config.json file. Aint no worries. Keep this file safe while token is active.
