@@ -1,6 +1,6 @@
 {
   "name": "yordadev-cli",
-  "description": "CLI to access ecomninja services.",
+  "description": "This is a NodeJS Command Line Interface build on oclif to interact with yordadev's Headless eCommerce Platform. See documentation for more information.",
   "version": "0.0.1",
   "author": "yordadev @yordadev",
   "bin": {
