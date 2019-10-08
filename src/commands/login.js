@@ -5,7 +5,7 @@ const {cli} = require('cli-ux')
 
 class LoginCommand extends Command {
   async run() {
-    cli.action.start('Attempting to Login')
+    
     const {flags} = this.parse(LoginCommand)
 
     const input = await cli.prompt('Enter your password', { type: 'hide', required: true })
@@ -39,8 +39,8 @@ class LoginCommand extends Command {
         
         fs.writeFile('config.json', data, (err) => {
             if (err) throw err;
-            cli.action.stop(body['status'])
-            console.log('\n\nLogged in. See yordadev-cli --help\n');
+            console.log('\nStatus: ' + body['status'] + "\n");
+            console.log('Logged in. See yordadev-cli --help');
         });
         
         
