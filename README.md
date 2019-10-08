@@ -1,7 +1,7 @@
-yordadev-cli
+yordadev-cli [wip]
 ============
 
-CLI to access ecomninja services.
+This is a NodeJS Command Line Interface build on oclif to interact with yordadev's Headless eCommerce Platform. See documentation for more information.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/yordadev-cli.svg)](https://npmjs.org/package/yordadev-cli)
@@ -22,19 +22,22 @@ If you recieve symlink error, on `npm install` add additional flag `--no-bin-lin
 ```sh
 alias <desiredAlias>='yordadev-cli'
 <desiredAlias> --help
-
+```
 
 
 ## Configuring
 Login and Register generate a config.json file. Aint no worries. Keep this file safe while token is active.
 
 <!-- usage -->
-# Commands
+# Available Commands
 <!-- commands -->
-##Authenication
-### Login
-`yordadev-cli login -e <email> -p <password>`
-### Register
-`yordadev-cli register -n <name> -e <email> -p <password> -c <confirmed password`
-### Account
+## Login
+`yordadev-cli login -e test@user.com`
+## Register
+`yordadev-cli register -e test@user.com`
+## Account
 `yordadev-cli account`
+
+## Shop
+### Create a Shop
+`yordadev-cli shop -m create`
